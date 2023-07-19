@@ -1,0 +1,87 @@
+unit UTeste;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Menus;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Button1: TButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Label5: TLabel;
+    RdGrpOpArit: TRadioGroup;
+    procedure Button1Click(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    function CalcOpAritimeticas(num1, num2: Integer): Integer;
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+function CalcOpAritimeticas(num1, num2: Integer): Integer;
+begin
+
+end;
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var n : integer;
+begin
+  if Trim(Edit1.Text) = '' then
+  begin
+    ShowMessage('O campo 1 está vazio!');
+    Edit1.SetFocus;
+  end
+  else if Trim(Edit2.Text) = '' then
+  begin
+    Application.MessageBox('O Valor do segundo campo não foi infomado!', 'Aviso', MB_OK+MB_ICONEXCLAMATION);
+    Edit2.SetFocus;
+  end
+  else
+  begin
+    n := StrToInt(Edit1.Text) + StrToInt(Edit2.Text);
+    Edit3.Text := IntToStr(n);
+    //ShowMessage('Resultado'+ IntToStr(n))
+  end;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  if Edit1.Text <> '' then
+  begin
+
+  end;
+
+end;
+
+procedure TForm1.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key=#13 then
+   begin
+     if ActiveControl is TEdit then
+     begin
+       with TEdit(ActiveControl).Parent do
+         SelectNext(ActiveControl, True, True)
+     end;
+     Key := #0;
+   end;
+end;
+
+end.
