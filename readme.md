@@ -1,0 +1,1 @@
+Projeto de teste do Delphi 11 Community Edition
